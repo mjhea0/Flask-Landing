@@ -11,8 +11,6 @@ CSRF_SESSION_KEY = "somethingimpossibletoguess"
 USERNAME = "admin"
 PASSWORD = "admin"
 
-# DATABASE = 'sample.db'
-# DATABASE_PATH = os.path.join(_basedir, DATABASE)
-# SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
-
-SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+DATABASE = 'sample.db'
+DATABASE_PATH = os.path.join(_basedir, DATABASE)
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
