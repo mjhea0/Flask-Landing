@@ -4,6 +4,8 @@ Boilerplate project template for a simple landing page to collect prelaunch emai
 
 ### Quickstart
 
+1. Clone the repo:
+
 ### Dependencies
 
 ### Structure
