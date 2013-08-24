@@ -1,6 +1,6 @@
-## Flask Landing
+## Flask-Landing
 
-Boilerplate project template for hosting a simple landing page to collect prelaunch emails.
+Boilerplate project template for a simple landing page to collect prelaunch emails. Powered by Flask. <3
 
 ### Quickstart
 
