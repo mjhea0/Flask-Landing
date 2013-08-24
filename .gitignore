@@ -9,6 +9,7 @@ test_run
 # C extensions
 *.so
 *.db
+Procfile
 
 # Packages
 *.egg
