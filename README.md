@@ -38,7 +38,7 @@ Boilerplate project template for a simple landing page to collect prelaunch emai
 
 ### Structure
 
-  .
+  	.
 	├── README.md
 	├── TODO.md
 	├── app
@@ -76,4 +76,4 @@ Boilerplate project template for a simple landing page to collect prelaunch emai
 
 To run the tests:
 
-  $ nosetests --with-coverage --cover-erase --cover-package=app --cover-html
+    $ nosetests --with-coverage --cover-erase --cover-package=app --cover-html
