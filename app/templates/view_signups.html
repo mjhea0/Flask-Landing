@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} - Signups{% endblock %}
+
+{% block content %}
+
+<h2>Emails</h2>
+  <ul>
+    {% for signup in signups %}
+  <li>{{ signup.email }}</li>
+    {% else %}
+  <li>No signups yet.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
