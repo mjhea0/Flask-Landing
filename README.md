@@ -1,79 +1,51 @@
-## Flask-Landing
+# Flask-Landing
 
-Boilerplate project template for a simple landing page to collect prelaunch emails. Powered by Flask. <3
+Boilerplate project template for a simple landing page to collect prelaunch emails. Powered by Flask, of course. <3
 
-### Quickstart
+## QuickStart
 
-1. Clone the repo:
+### Config
 
-        $ git clone git@github.com:mjhea0/Flask-Landing.git
-        $ cd Flask-Landing
-        
-2. Activate a virtualenv:
+Rename *config_sample.py* as *config.py* and then update.
 
-        $ virtualenv --no-site-packages env
-        $ source env/bin/activate
-        
-3. Install dependencies:
+#### Set Environment Variables
 
-        $ pip install -r requirements.txt
-        
-4. Create the database:
+```sh
+$ export APP_SETTINGS="project.config.DevelopmentConfig"
+```
 
-        $ python db_create.py
-        
-5. Run:
+or
 
-        $ python run.py
+```sh
+$ export APP_SETTINGS="project.config.ProductionConfig"
+```
 
-### Dependencies
+#### Create DB
 
- - Flask==0.10.1
- - Flask-WTF==0.8.4
- - WTForms==1.0.4
- - Flask-SQLAlchemy==1.0
- - coverage==3.6
- - nose==1.3.0
- - selenium==2.35.0
+```sh
+$ python manage.py create_db
+$ python manage.py db init
+$ python manage.py db migrate
+$ python manage.py create_admin
+$ python manage.py create_data
+```
 
-### Structure
+#### Run
 
-  	.
-	├── README.md
-	├── TODO.md
-	├── app
-	│   ├── __init__.py
-	│   ├── module
-	│   │   ├── __init__.py
-	│   │   ├── forms.py
-	│   │   ├── models.py
-	│   │   └── views.py
-	│   ├── static
-	│   │   ├── css
-	│   │   │   └── main.css
-	│   │   ├── img
-	│   │   │   ├── favicon.ico
-	│   │   │   └── favicon.png
-	│   │   ├── js
-	│   │   │   └── main.js
-	│   │   └── robots.txt
-	│   └── templates
-	│       ├── 404.html
-	│       ├── 500.html
-	│       ├── base.html
-	│       ├── index.html
-	│       ├── login.html
-	│       └── view_signups.html
-	├── config.py
-	├── db_create.py
-	├── requirements.txt
-	├── run.py
-	├── shell.py
-	└── tests
-	    └── landing_tests.py
+```sh
+$ python manage.py runserver
+```
 
-### Tests
+#### Testing
 
-To run the tests:
+Without coverage:
 
-    $ nosetests --with-coverage --cover-erase --cover-package=app --cover-html
+```sh
+$ python manage.py test
+```
+
+With coverage:
+
+```sh
+$ python manage.py cov
+```

@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block title %} - Login{% endblock %}
+
+{% block content %}
+
+<h1>Please login</h1>
+<br>
+<form class="form-signin" role="form" method="post" action="">
+  {{ form.csrf_token }}
+  <p>
+  {{ form.email.label }}
+  <br>
+  {{ form.email(placeholder="email@address.com") }}
+  <span class="error">
+    {% if form.email.errors %}
+      {% for error in form.email.errors %}
+        {{ error }}
+      {% endfor %}
+    {% endif %}
+  </span>
+  </p>
+  <p>
+  {{ form.password.label }}
+  <br>
+  {{ form.password(placeholder="your password") }}
+  <span class="error">
+    {% if form.password.errors %}
+      {% for error in form.password.errors %}
+        {{ error }}
+      {% endfor %}
+    {% endif %}
+  </span>
+  </p>
+  <button class="btn btn-success" type="submit">Sign in!</button>
+</form>
+
+{% endblock %}

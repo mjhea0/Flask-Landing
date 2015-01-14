@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block title %} - Welcome{% endblock %}
+
+{% block content %}
+
+<div id="main">
+
+  <h1>Sign up today to stay updated.</h1>
+    <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies justo sit amet tortor venenatis vehicula. Mauris tincidunt, lectus ac condimentum euismod, quam orci interdum elit, et congue ipsum lectus nec massa. Curabitur dapibus dui gravida, semper felis quis, sollicitudin sem. Donec lacinia fermentum risus a pharetra. Ut et consequat urna, non aliquet nisi.</p>
+    <br>
+
+  <form class="form-email" role="form" method="post" action="/">
+    {{ form.csrf_token }}
+    <p>
+    {{ form.email.label }}
+    <br>
+    {{ form.email(placeholder="email@address.com") }}
+    <span class="error">
+      {% if form.email.errors %}
+        {% for error in form.email.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+    </p>
+    <button class="btn btn-success" type="submit">Submit!</button>
+  </form>
+
+</div>
+
+{% endblock %}
