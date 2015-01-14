@@ -37,5 +37,3 @@ class ProductionConfig(BaseConfig):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/example'
     DEBUG_TB_ENABLED = False
-    STRIPE_SECRET_KEY = 'live key'
-    STRIPE_PUBLISHABLE_KEY = 'live key'

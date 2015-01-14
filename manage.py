@@ -9,7 +9,7 @@ from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 
 from project import app, db
-from project.models import User
+from project.models import User, Email
 
 
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -66,6 +66,15 @@ def drop_db():
 def create_admin():
     """Creates the admin user."""
     db.session.add(User(email="ad@min.com", password="admin", admin=True))
+    db.session.commit()
+
+
+@manager.command
+def create_data():
+    """Adds data to the email model."""
+    db.session.add(Email(email="test@test.com"))
+    db.session.add(Email(email="foo@foo.com"))
+    db.session.add(Email(email="bar@bar.com"))
     db.session.commit()
 
 

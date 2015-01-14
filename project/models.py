@@ -43,9 +43,9 @@ class Email(db.Model):
     __tablename__ = 'emails'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    email = db.Column(db.String, nullable=False)
-    email_added = db.Column(db.DateTime, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    email_added_on = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, email):
         self.email = email
-        self.email_added = datetime.datetime.now()
+        self.email_added_on = datetime.datetime.now()

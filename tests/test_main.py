@@ -4,6 +4,8 @@
 import unittest
 
 from base import BaseTestCase
+from project import db
+from project.models import Email
 
 
 class TestMainBlueprint(BaseTestCase):
@@ -26,7 +28,7 @@ class TestMainBlueprint(BaseTestCase):
             self.assertTrue(response.status_code == 200)
 
     def test_do_not_add_email(self):
-        # Ensure poorly fomrmed email is not be added,
+        # Ensure poorly fomrmed email is not be added.
         with self.client:
             response = self.client.post(
                 '/',
@@ -34,6 +36,20 @@ class TestMainBlueprint(BaseTestCase):
                 follow_redirects=True
             )
             self.assertIn('Invalid email address.', response.data)
+            self.assertTrue(response.status_code == 200)
+
+    def test_duplicate_emails(self):
+        # Ensure emails are unique.
+        email = Email('ad@min.com')
+        db.session.add(email)
+        db.session.commit()
+        with self.client:
+            response = self.client.post(
+                '/',
+                data=dict(email="ad@min.com"),
+                follow_redirects=True
+            )
+            self.assertIn('Sorry that email aleady exists!', response.data)
             self.assertTrue(response.status_code == 200)
 
 
