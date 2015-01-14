@@ -9,10 +9,10 @@
 <br>
 
 {% if signups %}
-<table class="table">
+<table class="table admin_table">
   <tr><th>Email Address</th><th>Registered</th></tr>
   {% for signup in signups %}
-  <tr><td>{{ signup.email }}</td><td>{{ signup.email_added }}</td></tr>
+  <tr><td>{{ signup.email }}</td><td>{{ signup.email_added_on }}</td></tr>
   {% endfor %}
 </table>
 {% else %}

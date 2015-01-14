@@ -5,3 +5,7 @@ body {
   padding-bottom: 20px;
 }
 
+.admin_table {
+  max-width: 400px;
+}
+
