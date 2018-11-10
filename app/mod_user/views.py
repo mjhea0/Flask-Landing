@@ -1,4 +1,4 @@
-# project/user/views.py
+# app/mod_user/views.py
 
 
 #################
@@ -7,12 +7,12 @@
 
 from flask import render_template, Blueprint, url_for, \
     redirect, flash, request
-from flask.ext.login import login_user, logout_user, \
+from flask_login import login_user, logout_user, \
     login_required
 
-from project import bcrypt
-from project.models import User, Email
-from project.user.forms import LoginForm
+from app import bcrypt
+from app.models import User, Email
+from app.mod_user.forms import LoginForm
 
 
 ################

@@ -1,4 +1,4 @@
-# project/__init__.py
+# app/__init__.py
 
 
 #################
@@ -8,10 +8,10 @@
 import os
 
 from flask import Flask, render_template
-from flask.ext.login import LoginManager
-from flask.ext.bcrypt import Bcrypt
-from flask.ext.debugtoolbar import DebugToolbarExtension
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_sqlalchemy import SQLAlchemy
 
 
 ################
@@ -37,8 +37,8 @@ db = SQLAlchemy(app)
 #### blueprints ####
 ####################
 
-from project.main.views import main_blueprint
-from project.user.views import user_blueprint
+from app.mod_main.views import main_blueprint
+from app.mod_user.views import user_blueprint
 app.register_blueprint(main_blueprint)
 app.register_blueprint(user_blueprint)
 
