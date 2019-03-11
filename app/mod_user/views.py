@@ -1,4 +1,4 @@
-# project/user/views.py
+# app/mod_user/views.py
 
 
 #################
@@ -6,13 +6,13 @@
 #################
 
 from flask import render_template, Blueprint, url_for, \
-    redirect, flash, request
-from flask.ext.login import login_user, logout_user, \
+    redirect, flash, request, Response
+from flask_login import login_user, logout_user, \
     login_required
 
-from project import bcrypt
-from project.models import User, Email
-from project.user.forms import LoginForm
+from app import bcrypt
+from app.models import User, Email
+from app.mod_user.forms import LoginForm
 
 
 ################
@@ -57,3 +57,16 @@ def admin():
     """Displays submitted emails to the admin."""
     signups = Email.query.all()
     return render_template('user/admin.html', signups=signups)
+
+@user_blueprint.route('/download-emails')
+@login_required
+def download_emails():
+    """Downloads emails."""
+    signups = Email.query.all()
+    def generate_csv():
+        for e in signups:
+            yield ','.join([e.email,str(e.email_added_on)])+'\n'
+    response = Response(generate_csv(), mimetype='text/csv')
+    response.headers.set(
+        'Content-Disposition', 'attachment', filename='emails.csv')
+    return response

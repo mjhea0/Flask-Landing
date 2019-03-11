@@ -11,13 +11,13 @@ Rename *config_sample.py* as *config.py* and then update.
 #### Set Environment Variables
 
 ```sh
-$ export APP_SETTINGS="project.config.DevelopmentConfig"
+$ export APP_SETTINGS="app.config.DevelopmentConfig"
 ```
 
 or
 
 ```sh
-$ export APP_SETTINGS="project.config.ProductionConfig"
+$ export APP_SETTINGS="app.config.ProductionConfig"
 ```
 
 #### Create DB
