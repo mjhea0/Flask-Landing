@@ -1,5 +1,7 @@
 # Flask-Landing
 
+[![Build Status](https://travis-ci.org/mjhea0/Flask-Landing.svg?branch=master)](https://travis-ci.org/mjhea0/Flask-Landing)
+
 Boilerplate project template for a simple landing page to collect prelaunch emails. Powered by Flask, of course. <3
 
 ## QuickStart
@@ -12,7 +14,7 @@ Boilerplate project template for a simple landing page to collect prelaunch emai
 
 ### Config
 
-Rename *app/config_sample.py* as *app/config.py* and then update.
+Update *app/config.py*.
 
 #### Set Environment Variables
 
