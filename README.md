@@ -4,9 +4,15 @@ Boilerplate project template for a simple landing page to collect prelaunch emai
 
 ## QuickStart
 
+### Install
+
+1. Clone
+1. Create and activate a virtualenv
+1. Install the dependencies
+
 ### Config
 
-Rename *config_sample.py* as *config.py* and then update.
+Rename *app/config_sample.py* as *app/config.py* and then update.
 
 #### Set Environment Variables
 

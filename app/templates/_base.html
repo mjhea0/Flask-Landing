@@ -23,16 +23,12 @@
       <!-- messages -->
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-      <div class="row">
-        <div class="md-12">
           {% for category, message in messages %}
           <div class="alert alert-{{ category }}">
             <a class="close" title="Close" href="#" data-dismiss="alert">&times;</a>
            {{message}}
           </div>
           {% endfor %}
-        </div>
-      </div>
       {% endif %}
       {% endwith %}
 
@@ -51,7 +47,7 @@
 
       {% block footer %}
       <footer class="footer">
-        <p>Copyright &copy; 2019 <a href="http://www.realpython.com">RealPython</a>.</p>
+        <p>Copyright &copy; 2019 <a href="http://www.mherman.org">Michael Herman</a>.</p>
       </footer>
       {% endblock %}
 

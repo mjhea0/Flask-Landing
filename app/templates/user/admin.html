@@ -8,13 +8,14 @@
 <br>
 
 {% if signups %}
-<a class="btn btn-primary" href="{{ url_for('user.download_emails') }}">Download CSV</a>
-<table class="table admin_table">
-  <tr><th>Email Address</th><th>Registered</th></tr>
-  {% for signup in signups %}
-  <tr><td>{{ signup.email }}</td><td>{{ signup.email_added_on }}</td></tr>
-  {% endfor %}
-</table>
+  <a class="btn btn-primary" href="{{ url_for('user.download_emails') }}">Download CSV</a>
+  <br><br>
+  <table class="table admin_table">
+    <tr><th>Email Address</th><th>Registered</th></tr>
+    {% for signup in signups %}
+    <tr><td>{{ signup.email }}</td><td>{{ signup.email_added_on }}</td></tr>
+    {% endfor %}
+  </table>
 {% else %}
   <p>No signups yet</p>
 {% endif %}

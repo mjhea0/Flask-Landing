@@ -2,7 +2,9 @@
 
 
 import os
+import sys
 import unittest
+
 import coverage
 
 from flask_script import Manager
@@ -23,9 +25,13 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def test():
-    """Runs the unit tests without coverage."""
+    """Runs the unit tests without test coverage."""
     tests = unittest.TestLoader().discover('tests')
-    unittest.TextTestRunner(verbosity=2).run(tests)
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        sys.exit(0)
+    else:
+        sys.exit(1)
 
 
 @manager.command
@@ -41,7 +47,7 @@ def cov():
     unittest.TextTestRunner(verbosity=2).run(tests)
     cov.stop()
     cov.save()
-    print 'Coverage Summary:'
+    print('Coverage Summary:')
     cov.report()
     basedir = os.path.abspath(os.path.dirname(__file__))
     covdir = os.path.join(basedir, 'tmp/coverage')
