@@ -6,7 +6,7 @@
 #################
 
 from flask import render_template, Blueprint, url_for, \
-    redirect, flash, request
+    redirect, flash, request, Response
 from flask_login import login_user, logout_user, \
     login_required
 
@@ -57,3 +57,16 @@ def admin():
     """Displays submitted emails to the admin."""
     signups = Email.query.all()
     return render_template('user/admin.html', signups=signups)
+
+@user_blueprint.route('/download-emails')
+@login_required
+def download_emails():
+    """Downloads emails."""
+    signups = Email.query.all()
+    def generate_csv():
+        for e in signups:
+            yield ','.join([e.email,str(e.email_added_on)])+'\n'
+    response = Response(generate_csv(), mimetype='text/csv')
+    response.headers.set(
+        'Content-Disposition', 'attachment', filename='emails.csv')
+    return response

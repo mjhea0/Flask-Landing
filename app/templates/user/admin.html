@@ -5,10 +5,10 @@
 {% block content %}
 
 <h1>Email Signups</h1>
-
 <br>
 
 {% if signups %}
+<a class="btn btn-primary" href="{{ url_for('user.download_emails') }}">Download CSV</a>
 <table class="table admin_table">
   <tr><th>Email Address</th><th>Registered</th></tr>
   {% for signup in signups %}
