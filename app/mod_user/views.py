@@ -58,6 +58,12 @@ def admin():
     signups = Email.query.all()
     return render_template('user/admin.html', signups=signups)
 
+@user_blueprint.route('/embed-code')
+@login_required
+def embed_code():
+    """Displays ajax based form."""
+    return render_template('user/embed-code.html')
+
 @user_blueprint.route('/download-emails')
 @login_required
 def download_emails():

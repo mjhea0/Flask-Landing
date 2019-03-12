@@ -6,13 +6,13 @@
 
 <h1>Email Signups</h1>
 <br>
-
+<a class="btn btn-primary" href="{{ url_for('user.embed_code') }}">Embed Code</a>
 {% if signups %}
 <a class="btn btn-primary" href="{{ url_for('user.download_emails') }}">Download CSV</a>
 <table class="table admin_table">
-  <tr><th>Email Address</th><th>Registered</th></tr>
+  <tr><th>Email Address</th><th>Registered</th><th>Source</th><th>JSON&nbsp;Data</th></tr>
   {% for signup in signups %}
-  <tr><td>{{ signup.email }}</td><td>{{ signup.email_added_on }}</td></tr>
+  <tr><td>{{ signup.email }}</td><td>{{ signup.email_added_on }}</td><td style="white-space: nowrap;">{{ signup.source }}</td><td>{{ signup.form_data_as_json | truncate(15) if signup.form_data_as_json else signup.form_data_as_json}}</td></tr>
   {% endfor %}
 </table>
 {% else %}

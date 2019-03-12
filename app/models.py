@@ -45,7 +45,11 @@ class Email(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String, unique=True, nullable=False)
     email_added_on = db.Column(db.DateTime, nullable=False)
+    source = db.Column(db.String)
+    form_data_as_json = db.Column(db.String)
 
-    def __init__(self, email):
+    def __init__(self, email, source=None, form_data_as_json=None):
         self.email = email
+        self.form_data_as_json = form_data_as_json if form_data_as_json else None
+        self.source = source if source else None
         self.email_added_on = datetime.datetime.now()
