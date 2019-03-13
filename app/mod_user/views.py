@@ -1,10 +1,5 @@
 # app/mod_user/views.py
 
-
-#################
-#### imports ####
-#################
-
 from flask import render_template, Blueprint, url_for, \
     redirect, flash, request, Response
 from flask_login import login_user, logout_user, \
@@ -14,17 +9,8 @@ from app import bcrypt
 from app.models import User, Email
 from app.mod_user.forms import LoginForm
 
-
-################
-#### config ####
-################
-
 user_blueprint = Blueprint('user', __name__,)
 
-
-################
-#### routes ####
-################
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
@@ -61,7 +47,7 @@ def admin():
 @user_blueprint.route('/embed-code')
 @login_required
 def embed_code():
-    """Displays ajax based form."""
+    """Displays ajax based form for easy copy and paste."""
     return render_template('user/embed-code.html')
 
 @user_blueprint.route('/download-emails')
@@ -69,9 +55,11 @@ def embed_code():
 def download_emails():
     """Downloads emails."""
     signups = Email.query.all()
+
     def generate_csv():
         for e in signups:
-            yield ','.join([e.email,str(e.email_added_on)])+'\n'
+            yield ','.join([e.email, str(e.email_added_on)])+'\n'
+
     response = Response(generate_csv(), mimetype='text/csv')
     response.headers.set(
         'Content-Disposition', 'attachment', filename='emails.csv')
