@@ -4,8 +4,8 @@
 import unittest
 
 from base import BaseTestCase
-from project import db
-from project.models import Email
+from app import db
+from app.models import Email
 
 
 class TestMainBlueprint(BaseTestCase):
@@ -14,7 +14,7 @@ class TestMainBlueprint(BaseTestCase):
         # Ensure Flask is setup.
         response = self.client.get('/', content_type='html/text')
         self.assertEqual(response.status_code, 200)
-        self.assertIn('Sign up today to stay updated.', response.data)
+        self.assertIn(b'Sign up today to stay updated.', response.data)
 
     def test_add_email(self):
         # Ensure email can be added,
@@ -24,7 +24,7 @@ class TestMainBlueprint(BaseTestCase):
                 data=dict(email="ad@min.com"),
                 follow_redirects=True
             )
-            self.assertIn('Thank you for your interest!', response.data)
+            self.assertIn(b'Thank you for your interest!', response.data)
             self.assertTrue(response.status_code == 200)
 
     def test_do_not_add_email(self):
@@ -35,7 +35,7 @@ class TestMainBlueprint(BaseTestCase):
                 data=dict(email="ad@min"),
                 follow_redirects=True
             )
-            self.assertIn('Invalid email address.', response.data)
+            self.assertIn(b'Invalid email address.', response.data)
             self.assertTrue(response.status_code == 200)
 
     def test_duplicate_emails(self):
@@ -49,7 +49,7 @@ class TestMainBlueprint(BaseTestCase):
                 data=dict(email="ad@min.com"),
                 follow_redirects=True
             )
-            self.assertIn('Sorry that email aleady exists!', response.data)
+            self.assertIn(b'Sorry that email aleady exists!', response.data)
             self.assertTrue(response.status_code == 200)
 
 

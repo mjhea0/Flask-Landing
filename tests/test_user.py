@@ -4,12 +4,12 @@
 import datetime
 import unittest
 
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from base import BaseTestCase
-from project import bcrypt
-from project.models import User
-from project.user.forms import LoginForm
+from app import bcrypt
+from app.models import User
+from app.mod_user.forms import LoginForm
 
 
 class TestUserBlueprint(BaseTestCase):
@@ -22,9 +22,9 @@ class TestUserBlueprint(BaseTestCase):
                 data=dict(email="ad@min.com", password="admin_user"),
                 follow_redirects=True
             )
-            self.assertIn('Welcome', response.data)
+            self.assertIn(b'Welcome', response.data)
             self.assertTrue(current_user.email == "ad@min.com")
-            self.assertTrue(current_user.is_active())
+            self.assertTrue(current_user.is_active)
             self.assertTrue(response.status_code == 200)
 
     def test_logout_behaves_correctly(self):
@@ -36,13 +36,13 @@ class TestUserBlueprint(BaseTestCase):
                 follow_redirects=True
             )
             response = self.client.get('/logout', follow_redirects=True)
-            self.assertIn('You were logged out. Bye!', response.data)
-            self.assertFalse(current_user.is_active())
+            self.assertIn(b'You were logged out. Bye!', response.data)
+            self.assertFalse(current_user.is_active)
 
     def test_logout_route_requires_login(self):
         # Ensure logout route requres logged in user.
         response = self.client.get('/logout', follow_redirects=True)
-        self.assertIn('Please log in to access this page', response.data)
+        self.assertIn(b'Please log in to access this page', response.data)
 
     def test_validate_success_login_form(self):
         # Ensure correct data validates.
@@ -74,7 +74,8 @@ class TestUserBlueprint(BaseTestCase):
     def test_check_password(self):
         # Ensure given password is correct after unhashing
         user = User.query.filter_by(email='ad@min.com').first()
-        self.assertTrue(bcrypt.check_password_hash(user.password, 'admin_user'))
+        self.assertTrue(
+          bcrypt.check_password_hash(user.password, 'admin_user'))
         self.assertFalse(bcrypt.check_password_hash(user.password, 'foobar'))
 
     def test_validate_invalid_password(self):
@@ -83,7 +84,7 @@ class TestUserBlueprint(BaseTestCase):
             response = self.client.post('/login', data=dict(
                 email='ad@min.com', password='foo_bar'
             ), follow_redirects=True)
-        self.assertIn('Invalid email and/or password.', response.data)
+        self.assertIn(b'Invalid email and/or password.', response.data)
 
 
 if __name__ == '__main__':

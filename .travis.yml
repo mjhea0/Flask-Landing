@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - "3.6"
+  - "3.5"
+  - "3.4"
+
+sudo: required
+
+env:
+  global:
+    - APP_SETTINGS="app.config.DevelopmentConfig"
+
+install:
+  - "pip install -r requirements.txt"
+
+script:
+  - flake8 .
+  - python manage.py test

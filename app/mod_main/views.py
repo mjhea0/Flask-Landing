@@ -1,27 +1,12 @@
 # app/mod_main/views.py
 
-
-#################
-#### imports ####
-#################
-
 from flask import render_template, Blueprint, request, flash, redirect, url_for
 
-from forms import SignUpForm
+from app.mod_main.forms import SignUpForm
 from app import db
 from app.models import Email
 
-
-################
-#### config ####
-################
-
 main_blueprint = Blueprint('main', __name__,)
-
-
-################
-#### routes ####
-################
 
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
@@ -39,8 +24,3 @@ def index():
             flash('Thank you for your interest!', 'success')
             return redirect(url_for('main.index'))
     return render_template('main/index.html', form=form)
-
-@main_blueprint.route('/options', methods=['GET', 'POST'])
-def options():
-    """Landing page for users to choose product."""
-    return render_template('main/options.html')

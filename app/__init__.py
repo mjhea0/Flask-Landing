@@ -1,10 +1,5 @@
 # app/__init__.py
 
-
-#################
-#### imports ####
-#################
-
 import os
 
 from flask import Flask, render_template
@@ -14,17 +9,9 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
 
 
-################
-#### config ####
-################
-
 app = Flask(__name__, static_folder='static')
 app.config.from_object(os.environ['APP_SETTINGS'])
 
-
-####################
-#### extensions ####
-####################
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -33,23 +20,16 @@ toolbar = DebugToolbarExtension(app)
 db = SQLAlchemy(app)
 
 
-####################
-#### blueprints ####
-####################
-
 from app.mod_main.views import main_blueprint
 from app.mod_user.views import user_blueprint
 from app.mod_api        import api_blueprint
+
 app.register_blueprint(main_blueprint)
 app.register_blueprint(user_blueprint)
 app.register_blueprint(api_blueprint)
 
 
-####################
-#### flask-login ####
-####################
-
-from models import User
+from app.models import User  # noqa: E402
 
 login_manager.login_view = "user.login"
 
@@ -58,10 +38,6 @@ login_manager.login_view = "user.login"
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
 
-
-########################
-#### error handlers ####
-########################
 
 @app.errorhandler(404)
 def page_not_found(error):
