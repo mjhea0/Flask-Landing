@@ -1,54 +1,53 @@
 <script>
-initForm = function() {
-	var submitBtn = document.getElementById("submit-btn");
-	submitBtn.onclick = function(event) {
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST','sign-up');
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.onload = function() {
-			if (xhr.status === 200) {
-				alert('Thank you for your form submission.');
-			}
-			else if (xhr.status !== 200) {
-				alert('Form submission failed.');
-			}
-		}
-		var inputFields = document.querySelectorAll(".landing-form input");
-		var inputFieldsObject = {};
-		var other_form_data = {};
-		for (i=0;i<inputFields.length;i++) {
-			if (inputFields[i].type != 'submit') {
-				if (inputFields[i].name == 'email' || inputFields[i].name == 'source') {
-					inputFieldsObject[inputFields[i].name] = inputFields[i].value;
-				}
-				else {
-					other_form_data[inputFields[i].name] = inputFields[i].value;
-				}
-			}
-		}
-		inputFieldsObject['form_data_as_json'] = JSON.stringify(other_form_data);
-		xhr.send(JSON.stringify(inputFieldsObject));
-		event.preventDefault();
-	}
-}
-if(window.attachEvent) {
-    window.attachEvent('onload', initForm);
-} else {
-    if(window.onload) {
-        var curronload = window.onload;
-        var newonload = function(evt) {
-            curronload(evt);
-            initForm(evt);
-        };
-        window.onload = newonload;
-    } else {
-        window.onload = initForm;
+initForm = function () {
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.onclick = function (event) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'sign-up');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        alert('Thank you for your form submission.');
+      } else if (xhr.status !== 200) {
+        alert('Form submission failed.');
+      }
+    };
+    const inputFields = document.querySelectorAll('.landing-form input');
+    const inputFieldsObject = {};
+    const otherFormData = {};
+    for (let i = 0; i < inputFields.length; i++) {
+      if (inputFields[i].type !== 'submit') {
+        if (inputFields[i].name === 'email' || inputFields[i].name === 'source') {
+          inputFieldsObject[inputFields[i].name] = inputFields[i].value;
+        } else {
+          otherFormData[inputFields[i].name] = inputFields[i].value;
+        }
+      }
     }
+    inputFieldsObject.form_data_as_json = JSON.stringify(otherFormData);
+    xhr.send(JSON.stringify(inputFieldsObject));
+    event.preventDefault();
+  };
+};
+
+if (window.attachEvent) {
+  window.attachEvent('onload', initForm);
+} else {
+  if (window.onload) {
+    const curronload = window.onload;
+    const newonload = function (evt) {
+      curronload(evt);
+      initForm(evt);
+    };
+    window.onload = newonload;
+  } else {
+    window.onload = initForm;
+  }
 }
 </script>
 <form class="landing-form" id="embedded-form">
-	<input type="email"  name="email" placeholder="Email">
-	<input type="text"   name="name"  placeholder="Name">
-	<input type="hidden" name="source" value="some-value" placeholder="Name">
-	<input id="submit-btn" type="submit" value="Submit">
+  <input type="email"  name="email" placeholder="Email">
+  <input type="text"   name="name"  placeholder="Name">
+  <input type="hidden" name="source" value="some-value" placeholder="Name">
+  <input id="submit-btn" type="submit" value="Submit">
 </form>
