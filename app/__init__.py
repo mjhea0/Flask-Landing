@@ -20,15 +20,9 @@ toolbar = DebugToolbarExtension(app)
 db = SQLAlchemy(app)
 
 
-<<<<<<< HEAD
 from app.mod_main.views import main_blueprint
 from app.mod_user.views import user_blueprint
 from app.mod_api.endpoints import api_blueprint
-=======
-from app.mod_main.views import main_blueprint  # noqa: E402
-from app.mod_user.views import user_blueprint  # noqa: E402
-from app.mod_api import api_blueprint  # noqa: E402
->>>>>>> e17b230a3eacf92536505fe1f4fa7d90dda68fd8
 
 app.register_blueprint(main_blueprint)
 app.register_blueprint(user_blueprint)
