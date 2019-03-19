@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 
 from app.mod_main.views import main_blueprint
 from app.mod_user.views import user_blueprint
-from app.mod_api        import api_blueprint
+from app.mod_api.endpoints import api_blueprint
 
 app.register_blueprint(main_blueprint)
 app.register_blueprint(user_blueprint)
