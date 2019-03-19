@@ -8,15 +8,15 @@
 <p style="max-width:600px;">Copy and paste this javascript and html code into your website. Remember to modify the line <span style="font-family: 'Courier New', Courier, monospace;background-color:#E8E8E8;white-space: nowrap">xhr.open('POST', 'sign-up');</span> so that it sends the request to the server where you have deployed Flask-Landing, for example: <span style="font-family: 'Courier New', Courier, monospace;background-color:#E8E8E8;white-space: nowrap">xhr.open('POST', 'https://myservername.com/sign-up');</span> .</p>
 <br>
 <textarea
-	spellcheck="false"
-	style="font-family: 'Courier New', Courier, monospace;width:100%;min-height:500px;font-size:.8rem;">
-{% include "user/form-code.html" %}
+  spellcheck="false"
+  style="font-family: 'Courier New', Courier, monospace;width:100%;min-height:500px;font-size:.8rem;"
+>
+  {% include "user/form-code.html" %}
 </textarea>
 {#
-
-<hr>
-<h2>Test Form</h2>
-{% include "user/form-code.html" %}
+  <hr>
+  <h2>Test Form</h2>
+  {% include "user/form-code.html" %}
 #}
 
 {% endblock %}
