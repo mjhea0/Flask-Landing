@@ -38,6 +38,13 @@ $ python manage.py create_admin
 $ python manage.py create_data
 ```
 
+#### Migrating DB
+Use the following after adding a columns to the models in models.py. This will create the needed columns in your database.
+```sh
+$ python manage.py db migrate
+$ python manage.py db upgrade
+```
+
 #### Run
 
 ```sh

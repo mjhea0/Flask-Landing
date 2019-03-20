@@ -22,8 +22,11 @@ db = SQLAlchemy(app)
 
 from app.mod_main.views import main_blueprint  # noqa: E402
 from app.mod_user.views import user_blueprint  # noqa: E402
+from app.mod_api.endpoints import api_blueprint  # noqa: E402
+
 app.register_blueprint(main_blueprint)
 app.register_blueprint(user_blueprint)
+app.register_blueprint(api_blueprint)
 
 
 from app.models import User  # noqa: E402
