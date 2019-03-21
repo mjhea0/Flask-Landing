@@ -5,6 +5,7 @@ from app import db
 from app.models import Email
 
 
+
 api_blueprint = Blueprint('api', __name__, url_prefix='/api')
 api = Api(api_blueprint)
 
