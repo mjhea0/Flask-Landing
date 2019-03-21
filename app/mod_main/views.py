@@ -14,7 +14,7 @@ def index():
     """Landing page for users to enter emails."""
     form = SignUpForm(request.form)
     if form.validate_on_submit():
-        test = Email.query.filter_by(email=form.email.data).first()
+        test = Email.query.filter_by(email=form.email.data, source=None).first()
         if test:
             flash('Sorry that email aleady exists!', 'danger')
         else:
