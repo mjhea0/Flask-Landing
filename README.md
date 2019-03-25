@@ -65,10 +65,10 @@ Without coverage:
 $ python manage.py test
 ```
 
-Without coverage and limited to a module inside tests/ directory
+Without coverage and limited to a module inside "tests" directory
 
 ```sh
-$ python manage.py test --test_name=test_endpoints.py
+$ python manage.py test --test_name=test_endpoints
 ```
 
 With coverage:
